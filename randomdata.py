@@ -10,4 +10,4 @@ while True:
         writer.writerow(data)
         y = random.randint(0,20)
         x+=1
-        time.sleep(3)
+        time.sleep(1)

@@ -19,28 +19,30 @@ import random
 import time
 import re
 def rand_num_generator(): #using to test to see if the label will update
-    if initial_icp.get() != '':
-        num1 = random.randint(1, int(round(float(initial_icp.get()))))
-        num2 = random.randint(1, int(round(float(initial_icp.get()))))
-        num3 = random.randint(1, int(round(float(initial_icp.get()))))
-        num4 = random.randint(1, int(round(float(initial_icp.get()))))
-        num5 = random.randint(1, int(round(float(initial_icp.get()))))
-        num6 = random.randint(1, int(round(float(initial_icp.get()))))
-        readout1_var.set(str(num1))
-        readout2_var.set(str(num2))
-        readout3_var.set(str(num3))
-        readout4_var.set(str(num4))
-        readout5_var.set(str(num5))
-        readout6_var.set(str(num6))
-    else:
-        readout1_var.set("0")
-        readout2_var.set("0")
-        readout3_var.set("0")
-        readout4_var.set("0")
-        readout5_var.set("0")
-        readout6_var.set("0")
-    indiv_readouts.after(1000, rand_num_generator)
-
+    try:
+        if initial_icp.get() != '':
+            num1 = random.randint(1, int(round(float(initial_icp.get()))))
+            num2 = random.randint(1, int(round(float(initial_icp.get()))))
+            num3 = random.randint(1, int(round(float(initial_icp.get()))))
+            num4 = random.randint(1, int(round(float(initial_icp.get()))))
+            num5 = random.randint(1, int(round(float(initial_icp.get()))))
+            num6 = random.randint(1, int(round(float(initial_icp.get()))))
+            readout1_var.set(str(num1))
+            readout2_var.set(str(num2))
+            readout3_var.set(str(num3))
+            readout4_var.set(str(num4))
+            readout5_var.set(str(num5))
+            readout6_var.set(str(num6))
+        else:
+            readout1_var.set("0")
+            readout2_var.set("0")
+            readout3_var.set("0")
+            readout4_var.set("0")
+            readout5_var.set("0")
+            readout6_var.set("0")
+        indiv_readouts.after(1000, rand_num_generator)
+    except:
+        pass
 
 def mainMenu():  # deletes window when button is pushed after time
     indiv_readouts.withdraw()
@@ -117,7 +119,7 @@ def create_Indiv_ICP_Window(master):
                         highlightthickness=3, highlightcolor="black", highlightbackground="black",
                         height = 5, width = 10,
                         name = "readout2", font = ("Arial", 30))
-    readout2.place(relx=0.1, rely = 0.6)
+    readout2.place(relx=0.1, rely = 0.5)
 
     readout3 = tk.Label(indiv_readouts, textvariable = readout3_var, bg= 'lightgreen',
                         highlightthickness=3, highlightcolor="black", highlightbackground="black",
@@ -129,7 +131,7 @@ def create_Indiv_ICP_Window(master):
                         highlightthickness=3, highlightcolor="black", highlightbackground="black",
                         height = 5, width = 10,
                         name = "readout4", font = ("Arial", 30))
-    readout4.place(relx=0.4, rely = 0.6)
+    readout4.place(relx=0.4, rely = 0.5)
 
     readout5 = tk.Label(indiv_readouts, textvariable = readout5_var, bg= 'lightgreen',
                         highlightthickness=3, highlightcolor="black", highlightbackground="black",
@@ -141,7 +143,7 @@ def create_Indiv_ICP_Window(master):
                         highlightthickness=3, highlightcolor="black", highlightbackground="black",
                         height = 5, width = 10,
                         name = "readout6", font = ("Arial", 30))
-    readout6.place(relx=.7, rely = 0.6)
+    readout6.place(relx=.7, rely = 0.5)
 
 #adding the add buttons to the readouts
     #1
@@ -151,23 +153,23 @@ def create_Indiv_ICP_Window(master):
     #2
     addButton2 = tk.Button(indiv_readouts, text="Add", heigh=1, width=8, state=DISABLED,
                            command=lambda: addBtn(addButton2, removeButton2, readout2))
-    addButton2.place(relx=0.10, rely=0.825)
+    addButton2.place(relx=0.13, rely=0.78)
     #3
     addButton3 = tk.Button(indiv_readouts, text="Add", heigh=1, width=8, state=DISABLED,
                            command=lambda: addBtn(addButton3, removeButton3, readout3))
-    addButton3.place(relx=0.40, rely=0.33)
+    addButton3.place(relx=0.43, rely=0.38)
     #4
     addButton4 = tk.Button(indiv_readouts, text="Add", heigh=1, width=8, state=DISABLED,
                            command=lambda: addBtn(addButton4, removeButton4, readout4))
-    addButton4.place(relx=0.40, rely=0.825)
+    addButton4.place(relx=0.43, rely=0.78)
     #5
     addButton5 = tk.Button(indiv_readouts, text="Add", heigh=1, width=8, state=DISABLED,
                            command=lambda: addBtn(addButton5, removeButton5, readout5))
-    addButton5.place(relx=0.70, rely=0.33)
+    addButton5.place(relx=0.73, rely=0.38)
     #6
     addButton6 = tk.Button(indiv_readouts, text="Add", heigh=1, width=8, state=DISABLED,
                            command=lambda: addBtn(addButton6, removeButton6, readout6))
-    addButton6.place(relx=0.70, rely=0.825)
+    addButton6.place(relx=0.73, rely=0.78)
 
 #adding the remove buttons to the readouts
     #1
@@ -177,23 +179,23 @@ def create_Indiv_ICP_Window(master):
     #2
     removeButton2 = tk.Button(indiv_readouts, text="Remove", height=1, width=8,
                               command = lambda: removeBtn(addButton2, removeButton2, readout2))
-    removeButton2.place(relx=0.15, rely=0.825)
+    removeButton2.place(relx=0.2, rely=0.78)
     #3
     removeButton3 = tk.Button(indiv_readouts, text="Remove", height=1, width=8,
                               command = lambda: removeBtn(addButton3, removeButton3, readout3))
-    removeButton3.place(relx=0.45, rely=0.33)
+    removeButton3.place(relx=0.5, rely=0.38)
     #4
     removeButton4 = tk.Button(indiv_readouts, text="Remove", height=1, width=8,
                               command = lambda: removeBtn(addButton4, removeButton4, readout4))
-    removeButton4.place(relx=0.45, rely=0.825)
+    removeButton4.place(relx=0.5, rely=0.78)
     #5
     removeButton5 = tk.Button(indiv_readouts, text="Remove", height=1, width=8,
                               command = lambda: removeBtn(addButton5, removeButton5, readout5))
-    removeButton5.place(relx=0.75, rely=0.33)
+    removeButton5.place(relx=0.8, rely=0.38)
     #6
     removeButton6 = tk.Button(indiv_readouts, text="Remove", height=1, width=8,
                               command = lambda: removeBtn(addButton6, removeButton6, readout6))
-    removeButton6.place(relx=0.75, rely=0.825)
+    removeButton6.place(relx=0.8, rely=0.78)
 
 def openIndividualReadouts():
     root.withdraw()
@@ -239,35 +241,30 @@ def recalibrate(box, calib_btn, recalib_btn):
 
 
 def animate(i):  #print time_string
-    ftemp = 'temp.csv'
+    ftemp = 'temp1.csv'
     fh = open(ftemp)
     temp = list()
     x = list()
     for line in fh:
-        if line != "":
-            pieces = line.split(',')
-            degree = pieces[0]
-            interm = pieces[1].split('\n')
-            x2 = interm[0]
-            # print time_string
-            try:
-                temp.append(float(degree))
-                x.append(float(x2))
-            except:
-                print
-                "dont know"
+        pieces = line.split(',')
+        degree = pieces[0]
+        interm = pieces[1].split('\n')
+        x2 = interm[0]
+        # print time_string
+        try:
+            temp.append(float(degree))
+            x.append(float(x2))
+        except:
+            pass
 
-            plot1.clear()
-            plot1.plot(temp,x)
-            plt.title('Temperature')
-            plt.xlabel('Time')
-            plot1.set_xlim(left=max(0, i - 50), right=i + 5)
-            i+=1
-    else:
-        for i in range(5):
-            time.sleep(1)
-            print("\a")
-
+        plot1.clear()
+        plot1.plot(temp,x)
+        plot1.set_xlim(left=max(0, i - 50), right=i + 5)
+        i+=1
+        # else:
+        #     warning_message = tk.Label(popup, text="There was a discontinuity in the signal, please double check connections!")
+        #     warning_message.pack()
+        #     time.sleep(5)
 
 root = tk.Tk()
 root.configure(bg = 'snow')
@@ -300,4 +297,3 @@ indiv_readouts.withdraw()
 create_Indiv_ICP_Window(root)
 rand_num_generator()
 tk.mainloop()
-plt.close()
